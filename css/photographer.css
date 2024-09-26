@@ -1,0 +1,147 @@
+#contact_modal {
+    display: none;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+.media_section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+    gap: 20px; /* Espacement entre les images */
+    margin: 20px; /* Marge autour de la section */
+}
+
+.media-container img,
+.media-container video {
+    width: 100%; /* Prend la largeur complète de la colonne */
+    height: 150px; /* Hauteur fixe pour un format rectangulaire */
+    object-fit: cover; /* Remplit l'espace tout en gardant le ratio d'aspect */
+    border-radius: 5px; /* Arrondi des coins, optionnel */
+}
+
+.media-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu */
+    text-align: center; /* Centre le texte */
+}
+
+.media-container p {
+    margin: 5px 0; /* Espacement entre les éléments */
+    color: #312E2E; /* Couleur du texte, optionnel */
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between; /* Espace entre les éléments */
+    width: 100%; /* Prend toute la largeur du conteneur */
+    padding: 10px; /* Espacement interne */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+}
+
+.info-container p {
+    margin: 0; /* Enlève les marges par défaut */
+    color: #D3573C; /* Couleur rouge pour le texte */
+}
+
+.like-icon {
+    color: #D3573C; /* Assure que le cœur soit aussi rouge */
+    margin-left: 5px; /* Ajoute un petit espace entre le nombre et l'icône */
+}
+
+.info-container p:first-child {
+    text-align: left; /* Aligne le titre à gauche */
+}
+
+.info-container p:last-child {
+    text-align: right; /* Aligne les likes à droite */
+}
+
+.photograph-header {
+    display: flex;
+    flex-direction: column; /* Colonne pour le nom, ville, tagline et image */
+    align-items: center;
+    background-color: #FAFAFA;
+    padding: 20px; /* Ajouter un peu de padding */
+}
+
+.photographer-info {
+    text-align: center; /* Centrer le texte */
+}
+
+#photographer-portrait {
+    height: auto; /* Ajuster automatiquement la hauteur */
+    width: 200px; /* Largeur fixe pour uniformité */
+    margin-top: 10px; /* Espace entre le texte et l'image */
+}
