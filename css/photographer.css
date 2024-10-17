@@ -174,3 +174,45 @@ form input {
     color: white;
     cursor: pointer;
 }
+
+.photographer_section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    gap: 70px;
+    margin-top: 100px;
+    justify-items: center; /* Centre les éléments horizontalement */
+}
+
+.photographer_section article {
+    text-align: center; /* Centre le texte */
+}
+
+.photographer-circle {
+    width: 200px; /* Largeur du cercle */
+    height: 200px; /* Hauteur du cercle */
+    border-radius: 50%; /* Rendre le div circulaire */
+    overflow: hidden; /* Cache les débordements */
+    display: flex;
+    justify-content: center; /* Centre l'image horizontalement */
+    align-items: center; /* Centre l'image verticalement */
+    background-color: #f0f0f0; /* Couleur de fond (optionnelle) */
+}
+
+.photographer-circle img {
+    width: 100%; /* L'image prend toute la largeur */
+    height: auto; /* Maintient les proportions */
+    object-fit: cover; /* Couvre le cercle */
+}
+
+.info-box {
+    position: fixed;
+    bottom: 20px; /* Distance du bas de la page */
+    right: 20px; /* Distance de la droite de la page */
+    background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+    border: 1px solid #ccc; /* Bordure grise */
+    padding: 10px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre */
+    z-index: 100; /* Assure que c'est au-dessus des autres éléments */
+}
+

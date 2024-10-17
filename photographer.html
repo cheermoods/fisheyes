@@ -55,10 +55,15 @@
       <div class="media_section"></div>
     </main>
 
-    <div id="lightbox" class="lightbox" style="display:none;">
+    <div id="lightbox" class="lightbox" style="display: none;">
       <span class="close" onclick="closeLightbox()">&times;</span>
       <img id="lightbox-image" src="" alt="Image en pleine taille" />
+      <div class="navigation">
+          <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
+          <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
+      </div>
     </div>
+  
 
     <div id="contact_modal" class="modal">
       <header>
@@ -89,6 +94,12 @@
           <button type="submit" class="contact_button">Envoyer</button>
       </form>
   </div>
+
+  <div class="info-box">
+    <span id="total-likes">0 <i class="fas fa-heart"></i></span>
+    <span id="price-per-day">0 € / jour</span>
+  </div>
+
   
   </body>
 </html>
