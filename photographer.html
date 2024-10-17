@@ -43,23 +43,52 @@
         </div>
       </div>
 
+      <div class="sorting">
+        <label for="tri">Trier par :</label>
+        <select id="tri">
+            <option value="popularite">Popularité</option>
+            <option value="date">Date</option>
+            <option value="nom">Nom</option>
+        </select>
+      </div>    
+
       <div class="media_section"></div>
     </main>
 
-    <div id="contact_modal">
-      <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="contact_button">Envoyer</button>
-        </form>
-      </div>
+    <div id="lightbox" class="lightbox" style="display:none;">
+      <span class="close" onclick="closeLightbox()">&times;</span>
+      <img id="lightbox-image" src="" alt="Image en pleine taille" />
     </div>
+
+    <div id="contact_modal" class="modal">
+      <header>
+          <h2>Contactez-moi</h2>
+          <img src="assets/icons/close.svg" id="close-button" />
+      </header>
+      <form id="contact-form">
+          <div>
+              <label>Prénom</label>
+              <input type="text" id="first-name" required />
+              <span class="error-message" id="first-name-error"></span>
+          </div>
+          <div>
+              <label>Nom</label>
+              <input type="text" id="last-name" required />
+              <span class="error-message" id="last-name-error"></span>
+          </div>
+          <div>
+              <label>Email</label>
+              <input type="email" id="email" required />
+              <span class="error-message" id="email-error"></span>
+          </div>
+          <div>
+              <label>Message</label>
+              <textarea id="message" required></textarea>
+              <span class="error-message" id="message-error"></span>
+          </div>
+          <button type="submit" class="contact_button">Envoyer</button>
+      </form>
+  </div>
+  
   </body>
 </html>

@@ -128,20 +128,49 @@ form input {
     text-align: right; /* Aligne les likes à droite */
 }
 
-.photograph-header {
+.photographer-info {
     display: flex;
     flex-direction: column; /* Colonne pour le nom, ville, tagline et image */
     align-items: center;
     background-color: #FAFAFA;
-    padding: 20px; /* Ajouter un peu de padding */
-}
-
-.photographer-info {
-    text-align: center; 
+    padding: 20px
 }
 
 #photographer-portrait {
     height: auto; /* Ajuster automatiquement la hauteur */
     width: 200px; /* Largeur fixe pour uniformité */
     margin-top: 10px; /* Espace entre le texte et l'image */
+}
+
+.photograph-header {
+    display: flex;
+    align-items: center; /* Aligne les éléments verticalement au centre */
+    justify-content: space-between; /* Espace entre les blocs */
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
 }
