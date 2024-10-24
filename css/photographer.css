@@ -216,3 +216,48 @@ form input {
     z-index: 100; /* Assure que c'est au-dessus des autres éléments */
 }
 
+
+
+/* Container principal qui gère la disposition de la photo et des détails */
+.photographer-profile {
+    display: flex; /* Utilisation de flexbox pour l'alignement horizontal */
+    align-items: center; /* Aligne les éléments verticalement au centre */
+    margin-bottom: 20px; /* Espace en bas */
+}
+
+/* Style pour la photo de profil en cercle */
+#photographer-portrait {
+    width: 150px; /* Largeur de la photo */
+    height: 150px; /* Hauteur de la photo */
+    border-radius: 50%; /* Forme circulaire */
+    object-fit: cover; /* Ajuste l'image pour éviter la déformation */
+    margin-right: 20px; /* Espace entre la photo et les détails */
+    border: 2px solid #ddd; /* Bordure autour de la photo */
+}
+
+/* Style pour les détails du photographe */
+.photographer-details {
+    display: flex; /* Utilisation de flexbox pour l'alignement */
+    flex-direction: column; /* Alignement vertical */
+    align-items: flex-start; /* Alignement à gauche */
+}
+
+/* Style pour le nom */
+#photographer-name {
+    font-size: 2em; /* Taille du texte */
+    margin: 0; /* Supprime la marge par défaut */
+    color: #333; /* Couleur du texte */
+}
+
+/* Style pour la ville et le pays */
+#photographer-city {
+    font-size: 1.2em; /* Taille du texte */
+    color: #333; /* Couleur du texte */
+    margin: 5px 0; /* Marge en haut et en bas */
+}
+
+/* Style pour la tagline */
+#photographer-tagline {
+    font-size: 1.2em; /* Taille du texte */
+    color: #666; /* Couleur du texte */
+}
