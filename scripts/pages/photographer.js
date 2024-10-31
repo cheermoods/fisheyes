@@ -1,3 +1,8 @@
+// Variables globales
+let currentImageIndex = 0; // Pour gérer l'index de la lightbox
+let media = []; // Pour stocker les médias
+let photographer; // Pour stocker les informations du photographe
+
 // Fonction pour récupérer l'ID du photographe depuis l'URL
 function getPhotographerIdFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,68 +40,144 @@ function triParCritere(media, critere) {
     });
 }
 
-// Variables globales
-let currentImageIndex = 0; // Pour gérer l'index de la lightbox
-let media = []; // Pour stocker les médias
-let photographer; // Pour stocker les informations du photographe
-
 // Fonction pour ouvrir la lightbox
-function openLightbox(imageSrc, index) {
-    currentImageIndex = index; // Met à jour l'index de l'image actuelle
+function openLightbox(index) {
+    currentImageIndex = index; // Mettre à jour l'index de l'image actuelle
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
-    lightboxImage.src = imageSrc; // Définit la source de l'image
-    lightbox.style.display = "flex"; // Affiche la lightbox
+    const lightboxVideo = document.getElementById("lightbox-video");
+    const lightboxTitle = document.getElementById("lightbox-title");
+
+    const currentMedia = media[currentImageIndex]; // Récupère l'élément média actuel
+    lightboxImage.style.display = "none";
+    lightboxVideo.style.display = "none";
+
+    // Afficher l'image ou la vidéo selon le type de média
+    if (currentMedia.image) {
+        lightboxImage.src = `assets/photos/${photographer.name}/${currentMedia.image}`;
+        lightboxImage.style.display = "block";
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute("src");
+    } else if (currentMedia.video) {
+        lightboxVideo.src = `assets/photos/${photographer.name}/${currentMedia.video}`;
+        lightboxVideo.style.display = "block";
+    }
+
+    lightboxTitle.textContent = currentMedia.title || "Média sans titre";
+    lightbox.style.display = "flex"; // Afficher la lightbox
+
+    // Ajout de l'écoute des touches de navigation
+    document.addEventListener("keydown", handleLightboxKeydown);
+
+    // Gérer le focus à l'intérieur de la lightbox
+    trapFocus(lightbox);
+}
+
+// Fonction pour gérer les touches de navigation dans la lightbox
+function handleLightboxKeydown(e) {
+    if (e.key === "ArrowRight") {
+        changeImage(1);
+    } else if (e.key === "ArrowLeft") {
+        changeImage(-1);
+    } else if (e.key === "Escape") {
+        closeLightbox();
+    }
+}
+
+// Fonction pour piéger le focus à l'intérieur de la lightbox
+function trapFocus(lightbox) {
+    const focusableElements = lightbox.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"]), input, textarea, select');
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Gérer le tab
+    lightbox.addEventListener('keydown', function (e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+    });
+
+    // Optionnel : Mettre le focus sur le premier élément de la lightbox lors de l'ouverture
+    firstElement.focus();
 }
 
 // Fonction pour fermer la lightbox
 function closeLightbox() {
     const lightbox = document.getElementById("lightbox");
-    lightbox.style.display = "none"; // Cache la lightbox
+    lightbox.style.display = "none";
+
+    // Suppression de l'écoute des touches de navigation pour éviter les interférences
+    document.removeEventListener("keydown", handleLightboxKeydown);
 }
 
 // Fonction pour changer d'image dans la lightbox
 function changeImage(direction) {
-    currentImageIndex += direction; // Change l'index de l'image
+    currentImageIndex += direction;
+
     // Boucle autour du tableau des médias
     if (currentImageIndex < 0) {
-        currentImageIndex = media.length - 1; // Retourne à la dernière image si on est avant le premier
+        currentImageIndex = media.length - 1;
     } else if (currentImageIndex >= media.length) {
-        currentImageIndex = 0; // Retourne à la première image si on dépasse la dernière
+        currentImageIndex = 0;
     }
 
     const lightboxImage = document.getElementById("lightbox-image");
-    // Mets à jour l'image affichée selon le type de média
-    if (media[currentImageIndex].image) {
-        lightboxImage.src = `assets/photos/${photographer.name}/${media[currentImageIndex].image}`;
-    } else if (media[currentImageIndex].video) {
-        lightboxImage.src = `assets/photos/${photographer.name}/${media[currentImageIndex].video}`; // Si c'est une vidéo, vous pouvez l'implémenter ici
+    const lightboxVideo = document.getElementById("lightbox-video");
+    const lightboxTitle = document.getElementById("lightbox-title");
+
+    const currentMedia = media[currentImageIndex];
+
+    // Réinitialiser l'affichage
+    lightboxImage.style.display = "none";
+    lightboxVideo.style.display = "none";
+
+    if (currentMedia.image) {
+        lightboxImage.src = `assets/photos/${photographer.name}/${currentMedia.image}`;
+        lightboxImage.style.display = "block";
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute("src");
+    } else if (currentMedia.video) {
+        lightboxVideo.src = `assets/photos/${photographer.name}/${currentMedia.video}`;
+        lightboxVideo.style.display = "block";
     }
+
+    // Met à jour le titre
+    lightboxTitle.textContent = currentMedia.title || "Média sans titre";
 }
 
 // Fonction pour afficher les médias du photographe
 async function displayPhotographerMedia() {
-    const id = getPhotographerIdFromURL(); // Récupère l'ID du photographe
-    media = await getMediaByPhotographerId(id); // Récupère les médias
+    const id = getPhotographerIdFromURL();
+    media = await getMediaByPhotographerId(id);
     const mediaSection = document.querySelector(".media_section");
-    mediaSection.innerHTML = ""; // Réinitialise la section
+    mediaSection.innerHTML = "";
 
-    photographer = await getPhotographerById(id); // Récupère les infos du photographe
+    photographer = await getPhotographerById(id);
     if (!photographer) {
         console.error("Photographe non trouvé");
         return;
     }
 
     const select = document.getElementById("tri");
-    const critere = select.value; // Récupère le critère de tri choisi par l'utilisateur
+    const critere = select.value;
+    const mediaTries = triParCritere(media, critere);
 
-    const mediaTries = triParCritere(media, critere); // Trie les médias selon le critère choisi
-
-    let totalLikes = 0; // Initialise le total des likes
+    let totalLikes = 0;
 
     // Affiche chaque média trié
     mediaTries.forEach((item, index) => {
-        totalLikes += item.likes; // Additionne les likes
+        totalLikes += item.likes;
 
         const mediaContainer = document.createElement("div");
         mediaContainer.classList.add("media-container");
@@ -106,57 +187,51 @@ async function displayPhotographerMedia() {
             mediaElement = document.createElement("img");
             mediaElement.setAttribute("src", `assets/photos/${photographer.name}/${item.image}`);
             mediaElement.setAttribute("alt", item.title || "Image du photographe");
-
-            // Ajouter un événement pour ouvrir la lightbox au clic
-            mediaElement.addEventListener("click", () => openLightbox(mediaElement.src, index));
         } else if (item.video) {
             mediaElement = document.createElement("video");
             mediaElement.setAttribute("src", `assets/photos/${photographer.name}/${item.video}`);
-            mediaElement.setAttribute("controls", ""); // Ajoute des contrôles pour la vidéo
-            mediaElement.setAttribute("alt", item.title || "Vidéo du photographe");
+            mediaElement.setAttribute("controls", "");
         }
+
+        // Rendre chaque média accessible au clavier
+        mediaElement.setAttribute("tabindex", "0");
+        mediaElement.addEventListener("click", () => openLightbox(index));
+        mediaElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") openLightbox(index);
+        });
 
         mediaContainer.appendChild(mediaElement);
         mediaSection.appendChild(mediaContainer);
     });
 
-    // Mettre à jour les likes et le prix dans le rectangle
     document.getElementById("total-likes").innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
     document.getElementById("price-per-day").textContent = `${photographer.price} € / jour`;
 }
 
 // Fonction pour afficher les informations du photographe
 async function displayPhotographerInfo() {
-    const id = getPhotographerIdFromURL(); // Récupère l'ID du photographe
-    const photographerData = await getPhotographerById(id); // Récupère les infos du photographe
+    const id = getPhotographerIdFromURL();
+    photographer = await getPhotographerById(id);
+    const photographerName = document.querySelector('#photographer-name');
+    const photographerCity = document.querySelector('#photographer-city'); // Correction ici
+    const photographerTagline = document.querySelector('#photographer-tagline');
+    const photographerPortrait = document.querySelector('#photographer-portrait'); // Pour le portrait
 
-    if (photographerData) {
-        // Remplit les éléments HTML avec les informations du photographe
-        document.getElementById("photographer-name").textContent = photographerData.name;
-        document.getElementById("photographer-city").textContent = `${photographerData.city}, ${photographerData.country}`;
-        document.getElementById("photographer-tagline").textContent = photographerData.tagline;
-
-        // Affiche la photo du photographe
-        const picture = `assets/photos/IDPhotos/${photographerData.portrait}`;
-        document.getElementById("photographer-portrait").setAttribute("src", picture);
-        document.getElementById("photographer-portrait").setAttribute("alt", `Portrait de ${photographerData.name}`);
-    } else {
-        console.error("Photographe non trouvé");
+    if (photographer) {
+        photographerName.textContent = photographer.name;
+        photographerCity.textContent = `${photographer.city}, ${photographer.country}`; // Ajoutez la ville
+        photographerTagline.textContent = photographer.tagline;
+        photographerPortrait.src = `assets/photos/IDPhotos/${photographer.portrait}`;
     }
 }
 
-// Événements au chargement du document
-document.addEventListener("DOMContentLoaded", () => {
-    const selectElement = document.getElementById("tri");
-    if (selectElement) {
-        selectElement.addEventListener("change", displayPhotographerMedia); // Met à jour l'affichage quand le critère change
-    }
-    displayPhotographerMedia(); // Affiche les médias au chargement
-    displayPhotographerInfo(); // Affiche les infos du photographe
+// Appel des fonctions pour afficher les informations du photographe et ses médias
+displayPhotographerInfo();
+displayPhotographerMedia();
+
+// Gestion du tri des médias
+document.getElementById("tri").addEventListener("change", async (event) => {
+    await displayPhotographerMedia();
 });
 
-
-/* mettre la condition si video balise video et si img balise img*/
 /* media section inner html += */
-/* rajouter des attribut aria sur les elements qui prennent le focus */
-/* listner qui ecoute en permanence les claviers appui touche + les fleches */

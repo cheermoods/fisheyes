@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
@@ -16,95 +16,100 @@
     <!-- Scripts -->
     <script src="/scripts/pages/photographer.js" defer></script>
     <script src="/scripts/utils/contactForm.js" defer></script>  
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      
-      <div class="photograph-header">
-        <!-- Bloc 1 : Informations du photographe -->
-    <section id="photographer-info">
-      <div class="photographer-details">
-          <h1 id="photographer-name"></h1>
-          <p id="photographer-city"></p>
-          <p id="photographer-tagline"></p>
-      </div>
-  </section>
+        
+        <div class="photograph-header">
+            <!-- Bloc 1 : Informations du photographe -->
+            <section id="photographer-info">
+                <div class="photographer-details">
+                    <h1 id="photographer-name"></h1>
+                    <p id="photographer-city"></p> <!-- Correction ici : ID pour la ville -->
+                    <p id="photographer-tagline"></p>
+                </div>
+            </section>
 
-  <!-- Bloc 2 : Bouton Contactez-moi -->
-  <div class="contact-block">
-      <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-      </button>
-  </div>
+            <!-- Bloc 2 : Bouton Contactez-moi -->
+            <div class="contact-block">
+                <button class="contact_button" onclick="displayModal()">
+                    Contactez-moi
+                </button>
+            </div>
 
-  <!-- Bloc 3 : Photo du photographe -->
-  <div class="photographer-photo">
-      <img id="photographer-portrait" src="" alt="Portrait du photographe" />
-  </div>
-</div>
-      </div>
+            <!-- Bloc 3 : Photo du photographe -->
+            <div class="photographer-photo">
+                <img id="photographer-portrait" src="" alt="Portrait du photographe" /> <!-- Ajout de l'ID ici -->
+            </div>
+        </div>
 
-      <div class="sorting">
-        <label for="tri">Trier par :</label>
-        <select id="tri">
-            <option value="popularite">Popularité</option>
-            <option value="date">Date</option>
-            <option value="nom">Nom</option>
-        </select>
-      </div>    
+        <div class="sorting">
+            <label for="tri">Trier par :</label>
+            <select id="tri">
+                <option value="popularite">Popularité</option>
+                <option value="date">Date</option>
+                <option value="nom">Nom</option>
+            </select>
+        </div>    
 
-      <div class="media_section"></div>
+        <div class="media_section"></div>
     </main>
 
     <div id="lightbox" class="lightbox" style="display: none;">
-      <span class="close" onclick="closeLightbox()">&times;</span>
-      <img id="lightbox-image" src="" alt="Image en pleine taille" />
-      <div class="navigation">
-          <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
-          <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
-      </div>
-  </div>
-  
-  
+        <div class="lightbox-content"></div>
+        <span class="close" tabindex="0" onclick="closeLightbox()">&times;</span>
+        
+        <!-- Conteneur pour l'image et la vidéo -->
+        <img id="lightbox-image" src="" alt="Image en pleine taille" style="display: none;" />
+        <video id="lightbox-video" controls style="display: none;"></video>
+        
+        <!-- Titre du média dans la lightbox -->
+        <div id="lightbox-title" class="media-title"></div>
+    
+        <!-- Boutons de navigation -->
+        <div class="navigation">
+            <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
+            <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
+        </div>
+    </div>
 
     <div id="contact_modal" class="modal">
-      <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="close-button" />
-      </header>
-      <form id="contact-form">
-          <div>
-              <label>Prénom</label>
-              <input type="text" id="first-name" required />
-              <span class="error-message" id="first-name-error"></span>
-          </div>
-          <div>
-              <label>Nom</label>
-              <input type="text" id="last-name" required />
-              <span class="error-message" id="last-name-error"></span>
-          </div>
-          <div>
-              <label>Email</label>
-              <input type="email" id="email" required />
-              <span class="error-message" id="email-error"></span>
-          </div>
-          <div>
-              <label>Message</label>
-              <textarea id="message" required></textarea>
-              <span class="error-message" id="message-error"></span>
-          </div>
-          <button type="submit" class="contact_button">Envoyer</button>
-      </form>
-  </div>
+        <header>
+            <h2>Contactez-moi</h2>
+            <img src="assets/icons/close.svg" id="close-button" />
+        </header>
+        <form id="contact-form">
+            <div>
+                <label>Prénom</label>
+                <input type="text" id="first-name" required />
+                <span class="error-message" id="first-name-error"></span>
+            </div>
+            <div>
+                <label>Nom</label>
+                <input type="text" id="last-name" required />
+                <span class="error-message" id="last-name-error"></span>
+            </div>
+            <div>
+                <label>Email</label>
+                <input type="email" id="email" required />
+                <span class="error-message" id="email-error"></span>
+            </div>
+            <div>
+                <label>Message</label>
+                <textarea id="message" required></textarea>
+                <span class="error-message" id="message-error"></span>
+            </div>
+            <button type="submit" class="contact_button">Envoyer</button>
+        </form>
+    </div>
 
-  <div class="info-box">
-    <span id="total-likes">0 <i class="fas fa-heart"></i></span>
-    <span id="price-per-day">0 € / jour</span>
-  </div>
-
-  
-  </body>
+    <div class="info-box">
+        <span id="total-likes">0 <i class="fas fa-heart"></i></span>
+        <span id="price-per-day">0 € / jour</span>
+    </div>
+    
+</body>
 </html>
