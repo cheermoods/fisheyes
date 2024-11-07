@@ -31,7 +31,7 @@ async function getPhotographers() {
       portrait: "account.png",
     },
   ]; 
-  */ Oui
+  */
 
   console.log(photographers);
 
@@ -64,5 +64,3 @@ async function init() {
 }
 
 init();
-
-

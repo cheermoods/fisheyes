@@ -1,13 +1,12 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-	modal.style.display = "block";
+    modal.style.display = "block";
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
-
 
 function validateForm() {
     let valid = true;
@@ -52,30 +51,60 @@ function validateForm() {
 
 function submitForm() {
     if (validateForm()) {
-        // Logique d'envoi du formulaire
-        console.log("Formulaire soumis avec succès !");
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        // Affichage dans la console
+        console.log("Formulaire soumis avec les informations suivantes :");
+        console.log("Prénom : " + firstName);
+        console.log("Nom : " + lastName);
+        console.log("Email : " + email);
+        console.log("Message : " + message);
+
         closeModal(); // Ferme le modal après soumission
     }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const openModalButton = document.getElementById("open-modal-button");
+    
     const closeButton = document.getElementById("close-button");
     const contactModal = document.getElementById("contact_modal");
     const contactForm = document.getElementById("contact-form");
 
-    contactModal.style.display = "none";
+    contactModal.style.display = "none"; // Le modal est initialement caché
 
-    openModalButton.addEventListener("click", () => {
-        contactModal.style.display = "block";
-    });
+   
 
+    // Fermer le modal lorsque le bouton "X" est cliqué
     closeButton.addEventListener("click", () => {
         contactModal.style.display = "none";
     });
 
+    // Fermer le modal si l'utilisateur clique à l'extérieur du formulaire
+    window.addEventListener("click", (event) => {
+        if (event.target === contactModal) {
+            closeModal();
+        }
+    });
+
+    // Soumettre le formulaire
     contactForm.addEventListener("submit", (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Empêche le rechargement de la page
         submitForm();
     });
 });
+
+// Fonction pour afficher le modal
+function displayModal() {
+    document.getElementById("contact_modal").style.display = "block";
+}
+
+// Fonction pour fermer le modal
+function closeModal() {
+    document.getElementById("contact_modal").style.display = "none";
+}
+
+// Ajout d'un écouteur d'événement sur le bouton de fermeture
+document.getElementById("close-button").addEventListener("click", closeModal);

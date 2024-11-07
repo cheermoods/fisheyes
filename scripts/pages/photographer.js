@@ -117,9 +117,23 @@ function closeLightbox() {
     const lightbox = document.getElementById("lightbox");
     lightbox.style.display = "none";
 
-    // Suppression de l'écoute des touches de navigation pour éviter les interférences
+    // Supprimer l'écoute des touches de navigation pour la lightbox
     document.removeEventListener("keydown", handleLightboxKeydown);
 }
+
+// Sélectionner le bouton de fermeture
+const closeLightboxButton = document.querySelector(".lightbox .close");
+
+// Ajouter un écouteur pour la touche "Enter" et "Espace" sur le bouton de fermeture
+closeLightboxButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault(); // Empêche tout comportement par défaut
+        closeLightbox(); // Ferme la lightbox
+    }
+});
+
+// Maintenir le comportement du clic avec la souris
+closeLightboxButton.addEventListener("click", closeLightbox);
 
 // Fonction pour changer d'image dans la lightbox
 function changeImage(direction) {
@@ -156,6 +170,7 @@ function changeImage(direction) {
     lightboxTitle.textContent = currentMedia.title || "Média sans titre";
 }
 
+// Fonction pour afficher les médias du photographe
 // Fonction pour afficher les médias du photographe
 async function displayPhotographerMedia() {
     const id = getPhotographerIdFromURL();
@@ -200,7 +215,29 @@ async function displayPhotographerMedia() {
             if (e.key === "Enter") openLightbox(index);
         });
 
+        const mediaInfo = document.createElement("div");
+        mediaInfo.classList.add("media-info");
+
+        // Nom de la photo et likes
+        const mediaTitle = document.createElement("span");
+        mediaTitle.textContent = item.title || "Média sans titre";
+        mediaInfo.appendChild(mediaTitle);
+
+        const likesContainer = document.createElement("span");
+        likesContainer.classList.add("likes-container");
+        likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart"></i>`;
+        likesContainer.setAttribute("tabindex", "0");
+
+        // Incrémenter les likes au clic
+        likesContainer.addEventListener("click", () => {
+            item.likes++; // Incrémente les likes pour ce média
+            likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart"></i>`; // Met à jour l'affichage des likes
+            updateTotalLikes(); // Met à jour le total des likes
+        });
+
+        mediaInfo.appendChild(likesContainer);
         mediaContainer.appendChild(mediaElement);
+        mediaContainer.appendChild(mediaInfo);
         mediaSection.appendChild(mediaContainer);
     });
 
@@ -208,20 +245,41 @@ async function displayPhotographerMedia() {
     document.getElementById("price-per-day").textContent = `${photographer.price} € / jour`;
 }
 
+// Fonction pour mettre à jour le total des likes
+function updateTotalLikes() {
+    let totalLikes = 0;
+    media.forEach(item => {
+        totalLikes += item.likes;
+    });
+
+    document.getElementById("total-likes").innerHTML = `${totalLikes} <i class="fas fa-heart"></i>`;
+}
+
+
 // Fonction pour afficher les informations du photographe
 async function displayPhotographerInfo() {
     const id = getPhotographerIdFromURL();
     photographer = await getPhotographerById(id);
+    
     const photographerName = document.querySelector('#photographer-name');
-    const photographerCity = document.querySelector('#photographer-city'); // Correction ici
+    const photographerCity = document.querySelector('#photographer-city');
     const photographerTagline = document.querySelector('#photographer-tagline');
-    const photographerPortrait = document.querySelector('#photographer-portrait'); // Pour le portrait
+    const photographerPortrait = document.querySelector('#photographer-portrait');
 
     if (photographer) {
         photographerName.textContent = photographer.name;
         photographerCity.textContent = `${photographer.city}, ${photographer.country}`; // Ajoutez la ville
         photographerTagline.textContent = photographer.tagline;
         photographerPortrait.src = `assets/photos/IDPhotos/${photographer.portrait}`;
+    }
+}
+
+// Afficher le contenu du formulaire dans la console
+function logFormData(event) {
+    const form = event.target;
+    const formData = new FormData(form);
+    for (let [name, value] of formData.entries()) {
+        console.log(`${name}: ${value}`);
     }
 }
 
@@ -234,4 +292,3 @@ document.getElementById("tri").addEventListener("change", async (event) => {
     await displayPhotographerMedia();
 });
 
-/* media section inner html += */
