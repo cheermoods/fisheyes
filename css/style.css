@@ -1,11 +1,13 @@
+/* Import du fichier CSS pour le style de la section photographe */
 @import url("photographer.css");
 
+/* Styles généraux de la page */
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }
 
-
+/* Styles de l'en-tête */
 header {
     display: flex;
     flex-direction: row;
@@ -14,23 +16,27 @@ header {
     height: 90px;
 }
 
+/* Titre de la page */
 h1 {
     color: #901C1C;
-    margin-right: 100px;
+    margin-right: 100px; /* Espace entre le titre et les autres éléments */
 }
 
+/* Logo dans l'en-tête */
 .logo {
     height: 50px;
-    margin-left: 100px;
+    margin-left: 100px; /* Espace à gauche du logo */
 }
 
+/* Section principale de la grille des photographes */
 .photographer_section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes */
+    gap: 70px; /* Espace entre les articles */
+    margin-top: 100px; /* Espace au-dessus de la section */
 }
 
+/* Article individuel pour chaque photographe */
 .photographer_section article {
     justify-self: center;
     display: flex;
@@ -39,25 +45,30 @@ h1 {
     flex-direction: column;
 }
 
+/* Titre pour chaque photographe */
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 28px;
 }
 
+/* Image de chaque photographe */
 .photographer_section article img {
     height: 200px;
     width: 200px;
 }
 
+/* Section de tri des photographes */
 .sorting {
     margin: 20px;
 }
 
+/* Menu déroulant de tri */
 #sort-select {
     padding: 10px;
     font-size: 16px;
 }
 
+/* Modale pour afficher des informations supplémentaires */
 .modal {
     display: none;
     position: fixed;
@@ -67,22 +78,25 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Fond sombre avec transparence */
 }
 
+/* Contenu de la modale */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 15% auto; /* Centre la modale verticalement */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 80%; /* Largeur de la modale */
 }
 
+/* Message d'erreur stylisé */
 .error-message {
     color: red;
-    font-size: 0.9em;
+    font-size: 0.9em; /* Taille de police légèrement réduite */
 }
 
+/* Boîte d'information flottante */
 .info-box {
     position: fixed;
     bottom: 20px;
@@ -91,10 +105,11 @@ h1 {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre pour effet flottant */
     font-size: 14px;
 }
 
+/* Lightbox pour agrandir les images */
 .lightbox {
     position: fixed;
     top: 0;
@@ -108,11 +123,13 @@ h1 {
     z-index: 1000;
 }
 
+/* Image dans la lightbox */
 .lightbox img {
     max-width: 90%;
     max-height: 90%;
 }
 
+/* Bouton de fermeture de la lightbox */
 .close {
     position: absolute;
     top: 20px;
@@ -122,6 +139,7 @@ h1 {
     cursor: pointer;
 }
 
+/* Flèches de navigation dans la lightbox */
 .navigation {
     position: absolute;
     top: 50%;
@@ -131,6 +149,7 @@ h1 {
     transform: translateY(-50%);
 }
 
+/* Style des flèches de navigation */
 .arrow {
     background: none;
     border: none;
@@ -139,136 +158,177 @@ h1 {
     cursor: pointer;
 }
 
-/* Styles pour le conteneur de l'image de profil */
+/* Conteneur d'image de profil */
 .profile-picture {
-    width: 150px; /* Ajuste la largeur selon tes besoins */
-    height: 150px; /* Ajuste la hauteur selon tes besoins */
-    border-radius: 50%; /* Crée un cercle */
-    overflow: hidden; /* Masque les parties qui dépassent */
-    display: flex; /* Aligne l'image au centre */
-    justify-content: center; /* Centre l'image horizontalement */
-    align-items: center; /* Centre l'image verticalement */
-    margin: 0 auto; /* Centre le conteneur */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Forme de cercle */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
-/* Styles pour l'image à l'intérieur du conteneur */
+/* Image à l'intérieur du conteneur */
 .profile-picture img {
-    width: 100%; /* Remplit le conteneur */
-    height: 100%; /* Remplit le conteneur */
-    object-fit: cover; /* Remplit le conteneur tout en maintenant le ratio */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintient le ratio de l'image */
 }
 
-/* Styliser le nom */
+/* Styles spécifiques pour le texte (nom, ville, tagline) */
 h2 {
-    font-size:20px;  /* Réduction proportionnelle de la taille de la police */
-    color: #000; 
-    margin: 2px 0;  /* Réduction des marges pour rapprocher les éléments */
-    text-decoration: none
-  }
-  
-  /* Styliser la ville */
-  .city {
-    font-size: 12px;  /* Réduction proportionnelle de la taille */
-    color: #000; 
-    margin: 0;  /* Pas de marge supplémentaire */
-    text-decoration: none
-  }
-  
-  /* Styliser le tagline */
-  .tagline {
-    font-size: 12px;  /* Même taille que la ville */
-    color: #333; 
-    margin: 2px 0;  /* Réduction de la marge pour rapprocher les éléments */
-    text-decoration: none
-  }
-  
-  /* Réduire l'espace global entre les éléments */
-  article {
-    padding: 10px;  /* Ajuste le padding autour de l'article si nécessaire */
-    max-width: 250px;  /* Réduire la largeur maximale de l'article */
-    text-align: center;  /* Centrer le contenu */
-  }
-  
-  /* Styliser l'image du profil pour qu'elle reste centrée */
-  .profile-picture img {
-    width: 100px;  /* Réduction de la taille de l'image */
+    font-size: 20px;
+    color: #000;
+    margin: 2px 0;
+}
+.city {
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+}
+.tagline {
+    font-size: 12px;
+    color: #333;
+    margin: 2px 0;
+}
+article {
+    padding: 10px;
+    max-width: 250px;
+    text-align: center;
+}
+
+.profile-picture img {
+    width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 50%;  /* Cercle autour de l'image */
-    margin-bottom: 10px;  /* Espace entre l'image et le nom */
-  }
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
 
-  /* Supprimer tout surlignage de texte */
-
-
-  /* Styles pour la lightbox */
+/* Lightbox d'images et vidéos */
 #lightbox {
-    display: none; /* Cachée par défaut */
-    position: fixed; /* Position fixe pour couvrir tout l'écran */
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Prend toute la largeur */
-    height: 100%; /* Prend toute la hauteur */
-    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre avec transparence */
-    align-items: center; /* Centre le contenu verticalement */
-    justify-content: center; /* Centre le contenu horizontalement */
-    z-index: 1000; /* Assure que la lightbox est au-dessus des autres éléments */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-/* Styles pour l'image dans la lightbox */
 #lightbox-image {
-    max-width: 90%; /* Limite la largeur de l'image */
-    max-height: 80%; /* Limite la hauteur de l'image */
-    border-radius: 5px; /* Arrondit les bords de l'image */
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 5px;
 }
 
-/* Styles pour la vidéo dans la lightbox */
 #lightbox video {
-    max-width: 90%; /* Limite la largeur de la vidéo */
-    max-height: 80%; /* Limite la hauteur de la vidéo */
-    border-radius: 5px; /* Arrondit les bords de la vidéo */
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 5px;
 }
 
-/* Styles pour les flèches de navigation */
 #prev, #next {
-    background-color: transparent; /* Transparent pour le fond */
-    border: none; /* Pas de bordure */
-    color: white; /* Couleur des flèches */
-    font-size: 30px; /* Taille de la police pour les flèches */
-    cursor: pointer; /* Curseur pointer pour indiquer que c'est cliquable */
-    position: absolute; /* Positionnement absolu pour les flèches */
-    top: 50%; /* Centre verticalement */
-    transform: translateY(-50%); /* Correction pour centrer exactement */
-    z-index: 1001; /* S'assurer que les flèches sont au-dessus */
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
 }
 
 #prev {
-    left: 10px; /* Décalage à gauche */
+    left: 10px;
 }
 
 #next {
-    right: 10px; /* Décalage à droite */
+    right: 10px;
 }
 
-/* Styles pour le bouton de fermeture */
 #close {
-    background-color: red; /* Fond rouge pour le bouton de fermeture */
-    color: white; /* Couleur du texte */
-    border: none; /* Pas de bordure */
-    padding: 10px 20px; /* Espacement autour du texte */
-    border-radius: 5px; /* Arrondit les bords */
-    cursor: pointer; /* Curseur pointer */
-    position: absolute; /* Positionnement absolu pour le bouton */
-    top: 20px; /* Décalage en haut */
-    right: 20px; /* Décalage à droite */
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
-/* Cacher la vidéo par défaut */
 #lightbox video {
-    display: none; /* Pas affichée par défaut */
+    display: none;
 }
 
 a {
     text-decoration: none;
 }
+
+/* Style pour le label "Trier par :" en gras */
+.sorting label {
+    font-weight: bold;
+}
+
+/* Suppression de la bordure et des arrière-plans indésirables */
+select {
+    background-color: #901C1C;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Contenu du menu déroulant */
+select option {
+    background-color: #901C1C;
+    color: white;
+    padding: 10px;
+    border: none;
+}
+
+/* Application de bord arrondi aux options */
+select option:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+select option:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Désactivation du survol gris */
+select option:hover {
+    background-color: #901C1C;
+}
+
+
+/* Ville du photographe */
+.city {
+    font-weight: bold;
+    color: #D3573C; 
+  }
+  
+  /* Prix du photographe */
+  .price {
+    font-size: 0.70em; 
+    color: #B0B0B0;    
+    margin: 0px;
+  }
 

@@ -292,3 +292,30 @@ document.getElementById("tri").addEventListener("change", async (event) => {
     await displayPhotographerMedia();
 });
 
+// Fonction de gestion du tri
+document.getElementById("tri").addEventListener("change", async (event) => {
+    const critere = event.target.value;  // Récupère la valeur sélectionnée
+    await displayPhotographerMedia(critere);  // Rafraîchit les médias en fonction du critère
+    
+    // Met à jour les options du select après un choix
+    updateSelectOptions();
+});
+
+// Met à jour les options du select pour supprimer celle choisie du menu
+function updateSelectOptions() {
+    const select = document.getElementById("tri");
+    const selectedValue = select.value;  // La valeur sélectionnée
+    
+    // Parcours les options et cache celle qui est sélectionnée
+    Array.from(select.options).forEach(option => {
+        if (option.value === selectedValue) {
+            option.hidden = true; // Cache l'option sélectionnée dans le menu déroulant
+        } else {
+            option.hidden = false; // Affiche les autres options
+        }
+    });
+}
+
+// Appel initial pour masquer l'option sélectionnée lorsque la page se charge
+updateSelectOptions();
+

@@ -1,5 +1,5 @@
 export function photographerTemplate(photographer) {
-  const { name, portrait, id, city, tagline } = photographer; // Ajout de city et tagline
+  const { name, portrait, id, city, tagline, price } = photographer; // Destructuration
 
   // Chemin vers les portraits
   const picture = `assets/photos/IDPhotos/${portrait}`;
@@ -35,11 +35,17 @@ export function photographerTemplate(photographer) {
     taglineElement.classList.add("tagline");
     taglineElement.textContent = tagline;
 
+    // Ajouter le prix par jour (après la tagline)
+    const priceElement = document.createElement("p");
+    priceElement.classList.add("price");  // Ajoute une classe pour le style
+    priceElement.textContent = `${price}€ / jour`;  // Utilisation de price ici
+
     // Ajout des éléments au lien et à l'article
     link.appendChild(profilePictureDiv);
     link.appendChild(h2);
     link.appendChild(cityElement);
     link.appendChild(taglineElement);
+    link.appendChild(priceElement); // Le prix est maintenant après la tagline
     article.appendChild(link);
 
     return article;
