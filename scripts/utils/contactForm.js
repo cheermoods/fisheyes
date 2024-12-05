@@ -97,14 +97,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Fonction pour afficher le modal
+/*
 function displayModal() {
     document.getElementById("contact_modal").style.display = "block";
 }
+
 
 // Fonction pour fermer le modal
 function closeModal() {
     document.getElementById("contact_modal").style.display = "none";
 }
+    */
 
 // Ajout d'un écouteur d'événement sur le bouton de fermeture
 document.getElementById("close-button").addEventListener("click", closeModal);
