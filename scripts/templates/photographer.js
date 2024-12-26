@@ -2,7 +2,7 @@ export function photographerTemplate(photographer) {
   const { name, portrait, id, city, tagline, price } = photographer; // Destructuration
 
   // Chemin vers les portraits
-  const picture = `assets/photos/IDPhotos/${portrait}`;
+  const picture = `../../assets/photos/IDPhotos/${portrait}`;
 
   // URL page du photographe
   const photographerPageUrl = `photographer.html?id=${id}`;
