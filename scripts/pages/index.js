@@ -2,7 +2,7 @@ import { photographerTemplate } from "../templates/photographer.js";
 
 async function getPhotographers() {
 
-  let response = await fetch("https://github.com/cheermoods/fisheyes/blob/main/scripts/pages/dataManager.js");
+  let response = await fetch("https://cheermoods.github.io/fisheyes/data/photographers.json");
   // position relative et absolu (img , a)
 
   // response.json()
