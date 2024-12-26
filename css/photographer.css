@@ -1,9 +1,107 @@
-/*  Modale de contact  */
+/* -------------------------------------------
+    SECTION 1: Modale de contact
+--------------------------------------------*/
+
+/* Modale de contact */
 #contact_modal {
     display: none;
+    position: fixed;
+    top: 30px;
+    z-index: 100; 
 }
 
-/*  En-tête de la section photographe  */
+/* Conteneur de fond derrière le modal */
+#contact_modal {
+    display: none;
+    position: fixed; 
+    top: 30px;    
+    left: 50%;                    /* Centre le modal horizontalement */
+    transform: translateX(-50%);         
+    z-index: 1001;
+}
+
+/* Fond d'écran transparent derrière le modal (élément séparé) */
+#contact_modal_background {
+    display: none;
+    position: fixed;              
+    top: 0;                       
+    left: 0;                     
+    width: 100%;                  
+    height: 100%;                 
+    background-color: rgba(255, 255, 255, 0.5); /* Fond blanc transparent */
+    z-index: 1000;              
+}
+
+
+/* Styles de la modale de contact */
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 500px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 35px;
+    border-top: 50px;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 50px;
+    font-weight: normal;
+    text-align: center;
+}
+
+#contact-photographer-name {
+    display: block; 
+    margin-top: 5px; 
+    font-size: 30px;
+}
+
+/* Formulaire dans la modale */
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 20px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* -------------------------------------------
+    SECTION 2: En-tête de la section photographe
+--------------------------------------------*/
+
+/* En-tête de la section photographe */
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -13,7 +111,7 @@
     justify-content: space-between; /* Espace entre les éléments */
 }
 
-/*  Bouton de contact  */
+/* Bouton de contact */
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -27,63 +125,11 @@
     cursor: pointer;
 }
 
-/*  Styles de la modale de contact  */
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-}
+/* -------------------------------------------
+    SECTION 3: Section des médias du photographe
+--------------------------------------------*/
 
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-/*  Formulaire dans la modale  */
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-}
-
-/*  Section des médias du photographe  */
+/* Section des médias du photographe */
 .media_section {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
@@ -101,7 +147,7 @@ form input {
     margin-bottom: 20px;
 }
 
-/*  Conteneur pour chaque média  */
+/* Conteneur pour chaque média */
 .media-container {
     display: flex;
     flex-direction: column;
@@ -114,7 +160,7 @@ form input {
     color: #312E2E;
 }
 
-/*  Informations sur chaque média  */
+/* Informations sur chaque média */
 .info-container {
     display: flex;
     justify-content: space-between;
@@ -142,7 +188,11 @@ form input {
     text-align: right;
 }
 
-/*  Informations sur le photographe  */
+/* -------------------------------------------
+    SECTION 4: Informations sur le photographe
+--------------------------------------------*/
+
+/* Informations sur le photographe */
 .photographer-info {
     display: flex;
     flex-direction: column;
@@ -151,14 +201,18 @@ form input {
     padding: 20px;
 }
 
-/*  Image de portrait du photographe  */
+/* Image de portrait du photographe */
 #photographer-portrait {
     height: auto;
     width: 200px;
     margin-top: 10px;
 }
 
-/*  Lightbox  */
+/* -------------------------------------------
+    SECTION 5: Lightbox
+--------------------------------------------*/
+
+/* Lightbox */
 .lightbox {
     position: fixed;
     top: 0;
@@ -172,21 +226,37 @@ form input {
     z-index: 1000;
 }
 
+.lightbox-media {
+    position: relative; /* Assurez-vous que l'élément peut recevoir un z-index */
+    z-index: -6; /* Place l'image et la vidéo derrière les autres éléments */
+}
+
 .lightbox img {
     max-width: 90%;
     max-height: 90%;
 }
 
-.close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: white;
-    cursor: pointer;
+/* Conteneur de l'image/vidéo et du titre */
+.lightbox-content {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    text-align: center; 
 }
 
-/*  Section principale pour chaque photographe  */
+/* Titre du média sous l'image/vidéo */
+#lightbox-title {
+    font-size: 18px; /* Ajustez la taille du titre */
+    color: red; /* Couleur du titre */
+    background-color: white;
+    padding: 5px 0;
+}
+
+/* -------------------------------------------
+    SECTION 6: Section principale pour chaque photographe
+--------------------------------------------*/
+
+/* Section principale pour chaque photographe */
 .photographer_section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -217,19 +287,46 @@ form input {
     object-fit: cover;
 }
 
-/*  Boîte d'information flottante  */
+/* -------------------------------------------
+    SECTION 7: Boîte d'information flottante
+--------------------------------------------*/
+
+/* Boîte d'information flottante */
 .info-box {
-    position: fixed;
-    right: 20px;
-    background-color: #901C1C;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 100;
+    position: fixed; /* Fixe l'élément */
+    bottom: 0; /* Colle l'élément au bas de l'écran */
+    right: 50px; /* Place l'élément à 50px du bord droit */
+    width: 200px; /* Largeur maximale de la boîte */
+    background-color: #D37F6D; /* Fond orange clair */
+    display: flex; /* Utilisation de flexbox pour disposer les éléments sur la même ligne */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Centrage vertical des éléments */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre pour donner un léger effet de profondeur */
+    border-radius: 5px; /* Coins arrondis */
+    border: 1px solid #ccc; /* Bordure autour de la boîte */
+    z-index: 100; /* Assure que la boîte flotte au-dessus des autres éléments */
+    padding: 10px; /* Ajout de padding pour l'espacement interne */
 }
 
-/*  Disposition et détails du profil photographe  */
+
+/* Styles pour le cœur et les éléments à l'intérieur */
+#total-likes, #price-per-day {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#total-likes i {
+    color: black; /* Couleur du cœur */
+    margin-left: 5px; /* Un peu d'espace entre le nombre et le cœur */
+}
+
+
+
+/* -------------------------------------------
+    SECTION 8: Disposition et détails du profil photographe
+--------------------------------------------*/
+
+/* Disposition et détails du profil photographe */
 .photographer-profile {
     display: flex;
     align-items: center;
@@ -242,7 +339,7 @@ form input {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
+    margin-right: 30px;
     border: 2px solid #ddd;
 }
 
@@ -251,17 +348,18 @@ form input {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-left: 40px;
 }
 
 #photographer-name {
     font-size: 2em;
     margin: 0;
-    color: #333;
+    color: #D3573C;
 }
 
 #photographer-city {
     font-size: 1.2em;
-    color: #333;
+    color: #901C1C;
     margin: 5px 0;
 }
 
@@ -270,7 +368,11 @@ form input {
     color: #666;
 }
 
-/*  Informations sur chaque média  */
+/* -------------------------------------------
+    SECTION 9: Informations sur chaque média (Nom + likes)
+--------------------------------------------*/
+
+/* Informations sur chaque média */
 .info-container {
     display: flex;
     justify-content: space-between;
@@ -317,6 +419,11 @@ form input {
     color: #901C1C;
 }
 
+/* -------------------------------------------
+    SECTION 10: Autres
+--------------------------------------------*/
+
+/* Autres sections */
 .sorting, .media_section {
     margin: 0 100px;
 }
@@ -324,7 +431,6 @@ form input {
 .photographer-info {
     padding-left: 25px;
 }
-
 
 .sorting {
     padding: 20px 0;

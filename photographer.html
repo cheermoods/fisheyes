@@ -14,13 +14,13 @@
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     
     <!-- Scripts -->    
-    <script type="module" src="/scripts/pages/photographer.js" defer></script>
+    <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js" defer></script>  
 </head>
 <body>
     <header>
         <a href="index.html">
-            <img src="assets/images/logo.png" class="logo" />
+            <img src="assets/images/logo.png" class="logo" alt="logo"/>
         </a>
     </header>
     <main id="main">
@@ -44,7 +44,7 @@
 
             <!-- Bloc 3 : Photo du photographe -->
             <div class="photographer-photo">
-                <img id="photographer-portrait" src="" alt="Portrait du photographe" /> <!-- Ajout de l'ID ici -->
+                <img id="photographer-portrait" src="assets/photographers/account.png" alt="Portrait du photographe" />
             </div>
         </div>
 
@@ -62,27 +62,32 @@
 
     <div id="lightbox" class="lightbox" style="display: none;">
         <div class="lightbox-content"></div>
-        <span class="close" tabindex="0" onclick="closeLightbox()">&times;</span>
+            <span class="close" tabindex="0">&times;</span>
+            
+            <div class="lightbox-media">
+                <!-- Conteneur pour l'image et la vidéo -->
+                <img id="lightbox-image" src="assets/photographers/account.png" alt="Image en pleine taille" />
+                <video id="lightbox-video" controls style="display: none;"></video>
+                
+                <!-- Titre du média dans la lightbox -->
+                <div id="lightbox-title" class="media-title"></div>
+            </div>
         
-        <!-- Conteneur pour l'image et la vidéo -->
-        <img id="lightbox-image" src="" alt="Image en pleine taille" style="display: none;" />
-        <video id="lightbox-video" controls style="display: none;"></video>
-        
-        <!-- Titre du média dans la lightbox -->
-        <div id="lightbox-title" class="media-title"></div>
-    
-        <!-- Boutons de navigation -->
-        <div class="navigation">
-            <button class="arrow left" onclick="changeImage(-1)">&#10094;</button>
-            <button class="arrow right" onclick="changeImage(1)">&#10095;</button>
-        </div>
+            <!-- Boutons de navigation -->
+            <div class="navigation">
+                <button class="arrow left" id="arrowleft">&#10094;</button>
+                <button class="arrow right" id="arrowright">&#10095;</button>
+            </div>
     </div>
+
+    <div id="contact_modal_background"></div>
 
     <div id="contact_modal" class="modal">
         <header>
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" id="close-button" />
+            <img src="assets/icons/close.svg" id="close-button" alt="close"/>
         </header>
+        <h3 id="contact-photographer-name"></h3>
         <form id="contact-form">
             <div>
                 <label>Prénom</label>

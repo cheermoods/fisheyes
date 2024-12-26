@@ -1,11 +1,25 @@
+function updatePhotographerNameInModal() {
+    const photographerName = document.getElementById('photographer-name').textContent; // Récupère le nom du photographe
+    const contactPhotographerName = document.getElementById('contact-photographer-name'); // L'élément dans le modal
+
+    // Met à jour le nom dans le modal
+    contactPhotographerName.textContent = photographerName;
+}
+
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-    modal.style.display = "block";
+    const background = document.getElementById("contact_modal_background");
+    
+    modal.style.display = "block";             
+    background.style.display = "block";       
+    updatePhotographerNameInModal();
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
+    const background = document.getElementById("contact_modal_background");
     modal.style.display = "none";
+    background.style.display = "none"; 
 }
 
 function validateForm() {
@@ -111,3 +125,4 @@ function closeModal() {
 
 // Ajout d'un écouteur d'événement sur le bouton de fermeture
 document.getElementById("close-button").addEventListener("click", closeModal);
+

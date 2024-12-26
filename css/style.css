@@ -1,13 +1,19 @@
-/* Import du fichier CSS pour le style de la section photographe */
+/* ---------------------------------------------------------------
+   Import du fichier CSS pour le style de la section photographe
+--------------------------------------------------------------- */
 @import url("photographer.css");
 
-/* Styles généraux de la page */
+/* ---------------------------------------------------------------
+   Styles généraux de la page
+--------------------------------------------------------------- */
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }
 
-/* Styles de l'en-tête */
+/* ---------------------------------------------------------------
+   Styles de l'en-tête (Header)
+--------------------------------------------------------------- */
 header {
     display: flex;
     flex-direction: row;
@@ -16,27 +22,26 @@ header {
     height: 90px;
 }
 
-/* Titre de la page */
 h1 {
     color: #901C1C;
-    margin-right: 100px; /* Espace entre le titre et les autres éléments */
+    margin-right: 100px;
 }
 
-/* Logo dans l'en-tête */
 .logo {
     height: 50px;
-    margin-left: 100px; /* Espace à gauche du logo */
+    margin-left: 100px;
 }
 
-/* Section principale de la grille des photographes */
+/* ---------------------------------------------------------------
+   Section des Photographes (Grille des photographes)
+--------------------------------------------------------------- */
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes */
-    gap: 70px; /* Espace entre les articles */
-    margin-top: 100px; /* Espace au-dessus de la section */
+    gap: 70px;
+    margin-top: 100px;
 }
 
-/* Article individuel pour chaque photographe */
 .photographer_section article {
     justify-self: center;
     display: flex;
@@ -45,124 +50,27 @@ h1 {
     flex-direction: column;
 }
 
-/* Titre pour chaque photographe */
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 28px;
 }
 
-/* Image de chaque photographe */
 .photographer_section article img {
     height: 200px;
     width: 200px;
 }
 
-/* Section de tri des photographes */
-.sorting {
-    margin: 20px;
+/* ---------------------------------------------------------------
+   Profil du Photographe (Image de profil, nom, ville, etc.)
+--------------------------------------------------------------- */
+#photographer-portrait {
+    display: none;  /* Masque l'image par défaut */
 }
 
-/* Menu déroulant de tri */
-#sort-select {
-    padding: 10px;
-    font-size: 16px;
-}
-
-/* Modale pour afficher des informations supplémentaires */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond sombre avec transparence */
-}
-
-/* Contenu de la modale */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* Centre la modale verticalement */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Largeur de la modale */
-}
-
-/* Message d'erreur stylisé */
-.error-message {
-    color: red;
-    font-size: 0.9em; /* Taille de police légèrement réduite */
-}
-
-/* Boîte d'information flottante */
-.info-box {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombre pour effet flottant */
-    font-size: 14px;
-}
-
-/* Lightbox pour agrandir les images */
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-/* Image dans la lightbox */
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-/* Bouton de fermeture de la lightbox */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-/* Flèches de navigation dans la lightbox */
-.navigation {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-}
-
-/* Style des flèches de navigation */
-.arrow {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-/* Conteneur d'image de profil */
 .profile-picture {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Forme de cercle */
+    border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -170,29 +78,30 @@ h1 {
     margin: 0 auto;
 }
 
-/* Image à l'intérieur du conteneur */
 .profile-picture img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Maintient le ratio de l'image */
+    object-fit: cover;
 }
 
-/* Styles spécifiques pour le texte (nom, ville, tagline) */
 h2 {
     font-size: 20px;
     color: #000;
     margin: 2px 0;
 }
+
 .city {
     font-size: 12px;
     color: #000;
     margin: 0;
 }
+
 .tagline {
     font-size: 12px;
     color: #333;
     margin: 2px 0;
 }
+
 article {
     padding: 10px;
     max-width: 250px;
@@ -207,7 +116,99 @@ article {
     margin-bottom: 10px;
 }
 
-/* Lightbox d'images et vidéos */
+/* ---------------------------------------------------------------
+   Section de Tri des Photographes
+--------------------------------------------------------------- */
+.sorting {
+    margin: 20px;
+}
+
+#sort-select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* ---------------------------------------------------------------
+   Modale (Fenêtre Pop-up)
+--------------------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+}
+
+
+/* ---------------------------------------------------------------
+   Lightbox (Agrandissement des images)
+--------------------------------------------------------------- */
+#lightbox-image {
+    display: none;  /* Masque l'image par défaut */
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #901C1C;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.arrow {
+    background: none;
+    border: none;
+    color: #901C1C;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+/* ---------------------------------------------------------------
+   Lightbox d'Images et Vidéos (Affichage en plein écran)
+--------------------------------------------------------------- */
 #lightbox {
     display: none;
     position: fixed;
@@ -215,23 +216,17 @@ article {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);;
     align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
-#lightbox-image {
-    max-width: 90%;
-    max-height: 80%;
+#lightbox-image, #lightbox video {
+    max-width: 400px;
     border-radius: 5px;
 }
 
-#lightbox video {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 5px;
-}
 
 #prev, #next {
     background-color: transparent;
@@ -269,66 +264,89 @@ article {
     display: none;
 }
 
+/* ---------------------------------------------------------------
+   Style du Menu de Sélection (Formulaire de tri)
+--------------------------------------------------------------- */
 a {
     text-decoration: none;
 }
 
-/* Style pour le label "Trier par :" en gras */
 .sorting label {
     font-weight: bold;
 }
 
-/* Suppression de la bordure et des arrière-plans indésirables */
 select {
     background-color: #901C1C;
     color: white;
     border: none;
     padding: 10px;
     font-size: 16px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none; /* Désactive les styles natifs */
+    -webkit-appearance: none; /* Pour Safari/Chrome */
+    -moz-appearance: none; /* Pour Firefox */
     width: 200px;
     cursor: pointer;
-    border-radius: 10px;
     overflow: hidden;
+    box-shadow: none;
+    outline: none; /* Retire le contour par défaut */
 }
 
-/* Contenu du menu déroulant */
+/* Éviter les bordures et box-shadow autour des options */
+select:focus, select:active {
+    outline: none; /* Retire le contour au focus */
+    box-shadow: none; /* Supprime la shadow autour du select */
+}
+
 select option {
     background-color: #901C1C;
     color: white;
     padding: 10px;
     border: none;
+    outline: none;
 }
 
-/* Application de bord arrondi aux options */
-select option:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-select option:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-/* Désactivation du survol gris */
+/* Enlève le fond bleu au survol des options */
 select option:hover {
     background-color: #901C1C;
 }
 
+/* Enlève le fond bleu du focus des options */
+select option:focus {
+    background-color: #901C1C; /* Garde la même couleur de fond */
+}
 
-/* Ville du photographe */
+
+/* ---------------------------------------------------------------
+   Styles pour la Ville et le Prix du Photographe
+--------------------------------------------------------------- */
 .city {
     font-weight: bold;
     color: #D3573C; 
+}
+
+.price {
+    font-size: 0.70em;
+    color: #B0B0B0;
+    margin: 0px;
+}
+
+/* ---------------------------------------------------------------
+   Derniers details
+--------------------------------------------------------------- */
+
+/* Style général pour les champs de texte (input et textarea) */
+input, textarea {
+    width: 100%; /* Prend toute la largeur disponible */
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-sizing: border-box; /* Assure que le padding ne dépasse pas la largeur du champ */
   }
   
-  /* Prix du photographe */
-  .price {
-    font-size: 0.70em; 
-    color: #B0B0B0;    
-    margin: 0px;
-  }
+/* Style spécifique pour le textarea */
+textarea {
+height: 80px; 
+}
 
+
+  
