@@ -3,7 +3,6 @@ import { photographerTemplate } from "../templates/photographer.js";
 async function getPhotographers() {
 
   let response = await fetch("/data/photographers.json");
-  // position relative et absolu (img , a)
 
   // response.json()
   const data = await response.json(); // transfomrer en objet
@@ -56,7 +55,6 @@ async function displayData(photographers) {
 
 async function init() {
   // Récupère les datas des photographes
-
   // const data = await fetch("http://localhost/miniprojets/fisheye/data/photographers.json");
 
   const { photographers } = await getPhotographers();

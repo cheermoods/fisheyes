@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -82,39 +82,40 @@
 
     <div id="contact_modal_background"></div>
 
+    <!-- Le modal -->
     <div id="contact_modal" class="modal">
         <header>
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" id="close-button" alt="close"/>
+            <img src="assets/icons/close.svg" id="close-button" alt="close" tabindex="0"/>
         </header>
         <h3 id="contact-photographer-name"></h3>
         <form id="contact-form">
             <div>
-                <label>Prénom</label>
-                <input type="text" id="first-name" required />
+                <label for="first-name">Prénom</label>
+                <input type="text" id="first-name" required tabindex="1"/>
                 <span class="error-message" id="first-name-error"></span>
             </div>
             <div>
-                <label>Nom</label>
-                <input type="text" id="last-name" required />
+                <label for="last-name">Nom</label>
+                <input type="text" id="last-name" required tabindex="2"/>
                 <span class="error-message" id="last-name-error"></span>
             </div>
             <div>
-                <label>Email</label>
-                <input type="email" id="email" required />
+                <label for="email">Email</label>
+                <input type="email" id="email" required tabindex="3"/>
                 <span class="error-message" id="email-error"></span>
             </div>
             <div>
-                <label>Message</label>
-                <textarea id="message" required></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" required tabindex="4"></textarea>
                 <span class="error-message" id="message-error"></span>
             </div>
-            <button type="submit" class="contact_button">Envoyer</button>
+            <button type="submit" class="contact_button" tabindex="5">Envoyer</button>
         </form>
     </div>
 
     <div class="info-box">
-        <span id="total-likes">0 <i class="fas fa-heart"></i></span>
+        <span id="total-likes">0 <i class="fas fa-heart" alt="Total-likes"></i></span>
         <span id="price-per-day">0 € / jour</span>
     </div>
 </body>

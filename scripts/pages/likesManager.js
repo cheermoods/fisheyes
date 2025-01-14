@@ -24,6 +24,6 @@ export function handleLikesClick(likesContainer, item) {
     }
 
     // Met à jour l'affichage des likes
-    likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart"></i>`;
+    likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart" role="img" aria-label="Bouton J'aime"></i>`;
     updateTotalLikes(media); // Met à jour le total des likes
 }

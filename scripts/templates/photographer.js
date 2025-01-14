@@ -1,8 +1,16 @@
 export function photographerTemplate(photographer) {
+  /*
+  const name = photographer.name;
+  const portrait = photographer.portrait;
+  const id = photographer.id;
+  const city = photographer.city;
+  const tagline = photographer.tagline;
+  const price = photographer.price;
+  */
   const { name, portrait, id, city, tagline, price } = photographer; // Destructuration
 
   // Chemin vers les portraits
-  const picture = `assets/photos/IDPhotos/${portrait}`;
+  const picture = "/assets/photos/IDPhotos/" + portrait;
 
   // URL page du photographe
   const photographerPageUrl = `photographer.html?id=${id}`;
@@ -51,5 +59,5 @@ export function photographerTemplate(photographer) {
     return article;
   }
 
-  return { name, picture, getUserCardDOM };
+  return { getUserCardDOM };
 }

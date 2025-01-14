@@ -68,7 +68,8 @@ export async function displayPhotographerMedia() {
         // Gestion des likes
         const likesContainer = document.createElement("span");
         likesContainer.classList.add("likes-container");
-        likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart"></i>`;
+
+        likesContainer.innerHTML = `${item.likes} <i class="fas fa-heart" role="img" aria-label="Bouton J'aime"></i>`;
         likesContainer.tabIndex = 0;
 
         likesContainer.addEventListener("click", () => handleLikesClick(likesContainer, item));

@@ -13,6 +13,11 @@ function displayModal() {
     modal.style.display = "block";             
     background.style.display = "block";       
     updatePhotographerNameInModal();
+
+    const firstFocusableElement = modal.querySelector("input, textarea, button, [tabindex]:not([tabindex='-1'])");
+    if (firstFocusableElement) {
+        firstFocusableElement.focus(); // Focus sur le premier élément focusable
+    }
 }
 
 function closeModal() {
@@ -89,8 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contactModal.style.display = "none"; // Le modal est initialement caché
 
-   
-
     // Fermer le modal lorsque le bouton "X" est cliqué
     closeButton.addEventListener("click", () => {
         contactModal.style.display = "none";
@@ -107,6 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Empêche le rechargement de la page
         submitForm();
+    });
+
+    // Ajout d'un écouteur d'événement sur le bouton de fermeture pour la gestion du clavier
+    closeButton.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
+            closeModal(); // Ferme le modal
+            event.preventDefault(); // Empêche tout comportement par défaut pour l'événement
+        }
     });
 });
 
@@ -126,3 +137,27 @@ function closeModal() {
 // Ajout d'un écouteur d'événement sur le bouton de fermeture
 document.getElementById("close-button").addEventListener("click", closeModal);
 
+// Piège à tabulation pour s'assurer que l'utilisateur reste à l'intérieur du modal
+document.addEventListener("keydown", (e) => {
+    const modal = document.getElementById("contact_modal");
+    if (modal.style.display === "block") {  // Vérifie si le modal est ouvert
+        const focusableElements = modal.querySelectorAll("input, textarea, button, [tabindex]:not([tabindex='-1'])");
+        const firstFocusableElement = focusableElements[0]; // Le premier élément focusable
+        const lastFocusableElement = focusableElements[focusableElements.length - 1]; // Le dernier élément focusable
+
+        // Piège à tabulation (Tab / Shift + Tab)
+        if (e.key === "Tab") {
+            if (e.shiftKey) { // Shift + Tab, se déplacer en arrière
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus(); // Retourner au dernier élément
+                    e.preventDefault(); // Empêche de sortir du modal
+                }
+            } else { // Tab seul, se déplacer en avant
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus(); // Retourner au premier élément
+                    e.preventDefault(); // Empêche de sortir du modal
+                }
+            }
+        }
+    }
+});
