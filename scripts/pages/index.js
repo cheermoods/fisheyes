@@ -3,6 +3,7 @@ import { photographerTemplate } from "../templates/photographer.js";
 async function getPhotographers() {
 
   let response = await fetch("/data/photographers.json");
+  // position relative et absolu (img , a)
 
   // response.json()
   const data = await response.json(); // transfomrer en objet

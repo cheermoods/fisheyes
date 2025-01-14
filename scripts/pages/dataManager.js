@@ -4,13 +4,13 @@ export function getPhotographerIdFromURL() {
 }
 
 export async function getPhotographerById(id) {
-    const response = await fetch("/data/photographers.json");
+    const response = await fetch("../data/photographers.json");
     const data = await response.json();
     return data.photographers.find(photographer => photographer.id == id) || null;
 }
 
 export async function getMediaByPhotographerId(id) {
-    const response = await fetch("/data/photographers.json");
+    const response = await fetch("../data/photographers.json");
     const data = await response.json();
 
     // Filtre les médias en fonction de l'ID
